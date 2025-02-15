@@ -74,7 +74,7 @@ $dogProducts = array_filter($products, function($prod) {
       <?php foreach ($pets as $pet): ?>
         <div class="pet-card">
           <!-- Make sure your DB 'image_url' is just the filename, e.g. 'dogs1.jpg', then prepend 'uploads/' here -->
-          <img src="uploads/<?php echo htmlspecialchars($pet['image_url']); ?>" alt="<?php echo htmlspecialchars($pet['name']); ?>">
+          <img src="<?php echo htmlspecialchars($pet['image_url']); ?>" alt="<?php echo htmlspecialchars($pet['name']); ?>">
           <div class="pet-card-content">
             <h3><?php echo htmlspecialchars($pet['name']); ?></h3>
             <p><strong>Age:</strong> <?php echo htmlspecialchars($pet['age']); ?> years old</p>
@@ -84,70 +84,7 @@ $dogProducts = array_filter($products, function($prod) {
         </div>
       <?php endforeach; ?>
       
-      <!-- Static Example Pets (unchanged) -->
-      <div class="pet-card">
-        <img src="uploads/dogs1.jpg" alt="Buddy the Dog">
-        <div class="pet-card-content">
-          <h3>Buddy</h3>
-          <p><strong>Age:</strong> 2 years old</p>
-          <p>Buddy was rescued from a tough situation, but his tail never stops wagging. He loves belly rubs and fetch!</p>
-          <button class="adopt-button" data-pet-id="1">Adopt</button>
-        </div>
-      </div>
-      <div class="pet-card">
-        <img src="uploads/cat002.jpg" alt="Luna the Cat">
-        <div class="pet-card-content">
-          <h3>Luna</h3>
-          <p><strong>Age:</strong> 3 years old</p>
-          <p>Luna is a sweet, gentle cat who adores naps in the sun. She'll curl up in your lap for hours.</p>
-          <button class="adopt-button" data-pet-id="2">Adopt</button>
-        </div>
-      </div>
-      <div class="pet-card">
-        <img src="uploads/dogs2.jpg" alt="Max the Dog">
-        <div class="pet-card-content">
-          <h3>Max</h3>
-          <p><strong>Age:</strong> 1 year old</p>
-          <p>Energetic and playful, Max needs plenty of room to run around. He’ll love outdoor adventures with you.</p>
-          <button class="adopt-button" data-pet-id="3">Adopt</button>
-        </div>
-      </div>
-      <div class="pet-card">
-        <img src="uploads/cats2.jpeg" alt="Misty the Cat">
-        <div class="pet-card-content">
-          <h3>Misty</h3>
-          <p><strong>Age:</strong> 4 years old</p>
-          <p>Misty’s bright green eyes reflect her curious nature. She’s playful, affectionate, and loves cozy spots.</p>
-          <button class="adopt-button" data-pet-id="4">Adopt</button>
-        </div>
-      </div>
-      <div class="pet-card">
-        <img src="uploads/dogs3.jpg" alt="Charlie the Dog">
-        <div class="pet-card-content">
-          <h3>Charlie</h3>
-          <p><strong>Age:</strong> 3 years old</p>
-          <p>Charlie has a heart of gold and an endless supply of kisses. He’ll be your best friend in no time!</p>
-          <button class="adopt-button" data-pet-id="5">Adopt</button>
-        </div>
-      </div>
-      <div class="pet-card">
-        <img src="uploads/dogs4.jpg" alt="Sadie the Dog">
-        <div class="pet-card-content">
-          <h3>Sadie</h3>
-          <p><strong>Age:</strong> 5 years old</p>
-          <p>Shy at first, Sadie opens up once she knows she’s safe. She’s a gentle soul looking for a patient family.</p>
-          <button class="adopt-button" data-pet-id="6">Adopt</button>
-        </div>
-      </div>
-      <div class="pet-card">
-        <img src="uploads/Cat03.jpg" alt="Oliver the Cat">
-        <div class="pet-card-content">
-          <h3>Oliver</h3>
-          <p><strong>Age:</strong> 2 years old</p>
-          <p>A mischievous cat who loves climbing and exploring. Oliver will keep you happily on your toes!</p>
-          <button class="adopt-button" data-pet-id="7">Adopt</button>
-        </div>
-      </div>
+      
     </div>
   </section>
 

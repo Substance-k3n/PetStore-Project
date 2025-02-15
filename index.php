@@ -111,7 +111,7 @@ $dogProducts = array_filter($products, function($prod) {
       <!-- ========== DB CATS (if any) ========== -->
       <?php foreach ($catProducts as $catProd): ?>
         <div class="product-card">
-          <img src="uploads/<?php echo htmlspecialchars($catProd['image_url']); ?>" alt="<?php echo htmlspecialchars($catProd['title']); ?>">
+          <img src="<?php echo htmlspecialchars($catProd['image_url']); ?>" alt="<?php echo htmlspecialchars($catProd['title']); ?>">
           <h3><?php echo htmlspecialchars($catProd['title']); ?></h3>
           <p class="price">$<?php echo number_format($catProd['price'], 2); ?></p>
           <p><?php echo htmlspecialchars($catProd['description']); ?></p>
@@ -124,50 +124,7 @@ $dogProducts = array_filter($products, function($prod) {
         </div>
       <?php endforeach; ?>
 
-      <!-- ========== ORIGINAL STATIC CAT PRODUCTS ========== -->
-      <div class="product-card">
-        <img src="uploads/Kitty tuna.webp" alt="Cat Food 1">
-        <h3>Kitty Tuna & Salmon</h3>
-        <p class="price">$5.50</p>
-        <p>Delicious wet food to keep your cat happy and healthy.</p>
-        <button class="btn add-to-cart" data-id="cat1" data-title="Kitty Tuna & Salmon" data-price="5.50">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/catToy.webp" alt="Cat Toy 1">
-        <h3>Interactive Feather Toy</h3>
-        <p class="price">$7.99</p>
-        <p>Engaging toy designed to keep your cat active and entertained.</p>
-        <button class="btn add-to-cart" data-id="cat2" data-title="Interactive Feather Toy" data-price="7.99">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/bed.webp" alt="Cat Bed 1">
-        <h3>Plush Cat Bed</h3>
-        <p class="price">$15.99</p>
-        <p>Soft, plush bed offering warmth and comfort for naptime.</p>
-        <button class="btn add-to-cart" data-id="cat3" data-title="Plush Cat Bed" data-price="15.99">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/collar.jpg" alt="Cat Collar 1">
-        <h3>Stylish Cat Collar</h3>
-        <p class="price">$8.50</p>
-        <p>Comfortable collar with a safety release buckle.</p>
-        <button class="btn add-to-cart" data-id="cat4" data-title="Stylish Cat Collar" data-price="8.50">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/Scratch.jpg" alt="Cat Scratcher Lounge">
-        <h3>Cat Scratcher Lounge</h3>
-        <p class="price">$22.00</p>
-        <p>Sturdy corrugated surface to satisfy your cat’s scratching instincts.</p>
-        <button class="btn add-to-cart" data-id="cat5" data-title="Cat Scratcher Lounge" data-price="22.00">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/DentalChew.webp" alt="Cat Dental Chew">
-        <h3>Dental Chew Treats</h3>
-        <p class="price">$4.99</p>
-        <p>Helps maintain oral health and fresh breath for your cat.</p>
-        <button class="btn add-to-cart" data-id="cat6" data-title="Dental Chew Treats" data-price="4.99">Add to Cart</button>
-      </div>
-    </div>
+     
   </section>
 
   <!-- ========== DOG PRODUCTS ========== -->
@@ -177,7 +134,7 @@ $dogProducts = array_filter($products, function($prod) {
       <!-- ========== DB DOGS (if any) ========== -->
       <?php foreach ($dogProducts as $dogProd): ?>
         <div class="product-card">
-          <img src="uploads/<?php echo htmlspecialchars($dogProd['image_url']); ?>" alt="<?php echo htmlspecialchars($dogProd['title']); ?>">
+          <img src="<?php echo htmlspecialchars($dogProd['image_url']); ?>" alt="<?php echo htmlspecialchars($dogProd['title']); ?>">
           <h3><?php echo htmlspecialchars($dogProd['title']); ?></h3>
           <p class="price">$<?php echo number_format($dogProd['price'], 2); ?></p>
           <p><?php echo htmlspecialchars($dogProd['description']); ?></p>
@@ -190,50 +147,7 @@ $dogProducts = array_filter($products, function($prod) {
         </div>
       <?php endforeach; ?>
 
-      <!-- ========== ORIGINAL STATIC DOG PRODUCTS ========== -->
-      <div class="product-card">
-        <img src="uploads/Premium dog Food.webp" alt="Dog Food 1">
-        <h3>Premium Dog Food</h3>
-        <p class="price">$24.99</p>
-        <p>Nutrient-rich kibble for optimal canine health and energy.</p>
-        <button class="btn add-to-cart" data-id="dog1" data-title="Premium Dog Food" data-price="24.99">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/chewtoy.jpg" alt="Dog Toy 1">
-        <h3>Durable Chew Toy</h3>
-        <p class="price">$12.49</p>
-        <p>Long-lasting chew designed to help clean teeth and prevent boredom.</p>
-        <button class="btn add-to-cart" data-id="dog2" data-title="Durable Chew Toy" data-price="12.49">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/Gold_Choke_Parent.jpg" alt="Dog Collar 1">
-        <h3>Stylish Dog Collar</h3>
-        <p class="price">$9.99</p>
-        <p>Comfortable and durable collar with adjustable fit.</p>
-        <button class="btn add-to-cart" data-id="dog3" data-title="Stylish Dog Collar" data-price="9.99">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/Cozy dog bed.jpg" alt="Dog Bed 1">
-        <h3>Cozy Dog Bed</h3>
-        <p class="price">$19.99</p>
-        <p>Soft, plush bed offering warmth and comfort for naptime.</p>
-        <button class="btn add-to-cart" data-id="dog4" data-title="Cozy Dog Bed" data-price="19.99">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/Shampoo dog.jpg" alt="Dog Shampoo">
-        <h3>Gentle Dog Shampoo</h3>
-        <p class="price">$6.99</p>
-        <p>Keep your dog’s coat clean and smelling fresh.</p>
-        <button class="btn add-to-cart" data-id="dog5" data-title="Gentle Dog Shampoo" data-price="6.99">Add to Cart</button>
-      </div>
-      <div class="product-card">
-        <img src="uploads/Harness.jpg" alt="Dog Harness">
-        <h3>Comfort Fit Harness</h3>
-        <p class="price">$14.99</p>
-        <p>Easy on/off design with adjustable straps for all breeds.</p>
-        <button class="btn add-to-cart" data-id="dog6" data-title="Comfort Fit Harness" data-price="14.99">Add to Cart</button>
-      </div>
-    </div>
+     
   </section>
 
   <!-- ========== CARE TIPS SECTION ========== -->
