@@ -2,14 +2,14 @@
 session_start();
 require_once 'db.php';
 
-// Check if user is "logged in" via cookie
+// Check if the user is logged in or not
 $loggedInUser = isset($_COOKIE['loggedInUser']) ? $_COOKIE['loggedInUser'] : null;
 
-// Fetch all products (if you want DB products too)
+// Fetch all products
 $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-// Separate products into cat and dog arrays (for DB-based items)
+// Separate into Cat / Dog categories
 $catProducts = array_filter($products, function($prod) {
     return strtolower($prod['category']) === 'cat';
 });
@@ -25,8 +25,8 @@ $dogProducts = array_filter($products, function($prod) {
   <meta name="keywords" content="Pet Store, Animal Supplies, Adoption, Shop, Care Tips, About">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pet Store | Home</title>
-  
-  <!-- Link external CSS file -->
+
+  <!-- Link your CSS -->
   <link rel="stylesheet" href="css/style.css">
   
   <!-- Pass the PHP variable 'loggedIn' to JS -->
@@ -88,6 +88,16 @@ $dogProducts = array_filter($products, function($prod) {
     </div>
   </section>
 
+  <!-- 
+    ========== SEARCH RESULTS SECTION ==========
+    Moved out of the header so it appears as main content 
+  -->
+  <section class="products-container" id="searchResults" style="display:none;">
+    <h2 style="text-align: center; color: #8fbc8f;">Search Results</h2>
+    <!-- Use the same "products-grid" class so styling matches cat/dog products -->
+    <div class="products-grid" id="searchResultsContent"></div>
+  </section>
+
   <!-- ========== CATEGORY SELECTION ========== -->
   <section class="category-selection animatable">
     <h2>Select a Category</h2>
@@ -108,10 +118,10 @@ $dogProducts = array_filter($products, function($prod) {
   <section class="products-container" id="catProducts">
     <h2 style="text-align: center; color: #8fbc8f;">Cat Products</h2>
     <div class="products-grid">
-      <!-- ========== DB CATS (if any) ========== -->
       <?php foreach ($catProducts as $catProd): ?>
         <div class="product-card">
-          <img src="<?php echo htmlspecialchars($catProd['image_url']); ?>" alt="<?php echo htmlspecialchars($catProd['title']); ?>">
+          <img src="<?php echo htmlspecialchars($catProd['image_url']); ?>" 
+               alt="<?php echo htmlspecialchars($catProd['title']); ?>">
           <h3><?php echo htmlspecialchars($catProd['title']); ?></h3>
           <p class="price">$<?php echo number_format($catProd['price'], 2); ?></p>
           <p><?php echo htmlspecialchars($catProd['description']); ?></p>
@@ -123,18 +133,17 @@ $dogProducts = array_filter($products, function($prod) {
           </button>
         </div>
       <?php endforeach; ?>
-
-     
+    </div> <!-- End .products-grid -->
   </section>
 
   <!-- ========== DOG PRODUCTS ========== -->
   <section class="products-container" id="dogProducts">
     <h2 style="text-align: center; color: #8fbc8f;">Dog Products</h2>
     <div class="products-grid">
-      <!-- ========== DB DOGS (if any) ========== -->
       <?php foreach ($dogProducts as $dogProd): ?>
         <div class="product-card">
-          <img src="<?php echo htmlspecialchars($dogProd['image_url']); ?>" alt="<?php echo htmlspecialchars($dogProd['title']); ?>">
+          <img src="<?php echo htmlspecialchars($dogProd['image_url']); ?>" 
+               alt="<?php echo htmlspecialchars($dogProd['title']); ?>">
           <h3><?php echo htmlspecialchars($dogProd['title']); ?></h3>
           <p class="price">$<?php echo number_format($dogProd['price'], 2); ?></p>
           <p><?php echo htmlspecialchars($dogProd['description']); ?></p>
@@ -146,8 +155,7 @@ $dogProducts = array_filter($products, function($prod) {
           </button>
         </div>
       <?php endforeach; ?>
-
-     
+    </div> <!-- End .products-grid -->
   </section>
 
   <!-- ========== CARE TIPS SECTION ========== -->
@@ -170,8 +178,7 @@ $dogProducts = array_filter($products, function($prod) {
       </div>
       <!-- ... additional slides as needed ... -->
     </div>
-    <a href="care_tips.php" class="btn explore-btn">Explore More Care Tips</a>
-  </section>
+      </section>
 
   <!-- ========== EVENTS SECTION ========== -->
   <section class="events animatable" id="events">
@@ -191,15 +198,15 @@ $dogProducts = array_filter($products, function($prod) {
       </div>
     </div>
     <div style="text-align: center; margin-top: 2rem;">
-      <a href="#" class="btn">View Full Calendar</a>
+      
     </div>
   </section>
 
   <!-- ========== ABOUT SECTION ========== -->
   <section class="about animatable" id="about">
     <h2>About Us</h2>
-    <p>Our Pet Store has been serving the community for over a decade, providing quality pet products and adoption resources.</p>
-    <p>We believe in the power of pets to bring joy and companionship. Join us in making a difference in the lives of animals.</p>
+    <p>We started our pet store as a group of enthusiastic newcomers from Hilcoe School, united by our passion for animals and innovative pet care. In those early days, we combined fresh ideas with a commitment to quality, determined to offer pet products and services that truly make a difference. Our journey has been fueled by creativity and a deep desire to improve the lives of pets and their families. Today, our store stands as a trusted destination for pet lovers, reflecting the energy and dedication that first brought us together. We continue to evolve and grow, always putting the well-being of your furry friends at the heart of everything we do.</p>
+    
   </section>
 
   <!-- ========== FOOTER ========== -->
@@ -209,7 +216,7 @@ $dogProducts = array_filter($products, function($prod) {
         <h3>Contact Us</h3>
         <p>123 Pet Lane, Animal City</p>
         <p>Email: info@petstore.com</p>
-        <p>Phone: (123) 456-7890</p>
+        <p>Phone: (+251) 456-7890-23</p>
       </div>
       <div>
         <h3>Hours</h3>

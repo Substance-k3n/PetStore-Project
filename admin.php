@@ -2,15 +2,11 @@
 session_start();
 require_once __DIR__ . '/db.php';
 
-// Ensure only the admin can access this dashboard
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
     header("Location: login_form.php");
     exit;
 }
 
-// ==============================
-// Handle New Product Upload
-// ==============================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['product_image'])) {
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["product_image"]["name"]);
@@ -42,9 +38,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['product_image'])) {
     }
 }
 
-// ==============================
-// Handle New Adoptable Pet Upload
-// ==============================
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['pet_image']) && isset($_POST['add_pet'])) {
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["pet_image"]["name"]);
@@ -76,25 +69,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['pet_image']) && isse
     }
 }
 
-// ==============================
-// Handle Product Deletion
-// ==============================
 if (isset($_POST['delete_product'])) {
     $stmt = $pdo->prepare("DELETE FROM products WHERE id = ?");
     $stmt->execute([$_POST['product_id']]);
 }
 
-// ==============================
-// Handle Adoptable Pet Deletion
-// ==============================
 if (isset($_POST['delete_pet'])) {
     $stmt = $pdo->prepare("DELETE FROM pets WHERE id = ?");
     $stmt->execute([$_POST['pet_id']]);
 }
 
-// ==============================
-// Handle Adoption Request Actions
-// ==============================
 if (isset($_POST['approve_request']) || isset($_POST['reject_request'])) {
     $reqStmt = $pdo->prepare("SELECT * FROM adoption_requests WHERE id = ?");
     $reqStmt->execute([$_POST['request_id']]);
@@ -131,18 +115,12 @@ if (isset($_POST['approve_request']) || isset($_POST['reject_request'])) {
     }
 }
 
-// ==============================
-// Fetch Data from Database
-// ==============================
-// Products
 $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
 $products = $stmt->fetchAll();
 
-// Adoptable Pets
 $stmt = $pdo->query("SELECT * FROM pets ORDER BY id DESC");
 $adoptable_pets = $stmt->fetchAll();
 
-// Adoption Requests (only pending)
 $stmt = $pdo->query("SELECT * FROM adoption_requests WHERE status = 'Pending' ORDER BY created_at DESC");
 $adoption_requests = $stmt->fetchAll();
 ?>
@@ -151,9 +129,7 @@ $adoption_requests = $stmt->fetchAll();
 <head>
   <meta charset="UTF-8">
   <title>Admin Dashboard - PetStore</title>
-  <!-- Link external admin CSS -->
   <link rel="stylesheet" href="css/admin.css">
-  <!-- Link external admin JS -->
   <script src="js/admin.js" defer></script>
 </head>
 <body>
@@ -163,7 +139,6 @@ $adoption_requests = $stmt->fetchAll();
       <a href="logout.php" class="btn logout" style="padding:10px 20px; color:#fff; text-decoration:none;">Logout</a>
     </div>
 
-    <!-- Add New Product Section -->
     <section class="section">
       <h2>Add New Product</h2>
       <?php if (!empty($error)): ?>
@@ -204,7 +179,6 @@ $adoption_requests = $stmt->fetchAll();
       </form>
     </section>
 
-    <!-- Manage Products Section -->
     <section class="section">
       <h2>Manage Products</h2>
       <div class="grid">
@@ -222,7 +196,6 @@ $adoption_requests = $stmt->fetchAll();
       </div>
     </section>
 
-    <!-- Add New Adoptable Pet Section -->
     <section class="section">
       <h2>Add New Adoptable Pet</h2>
       <?php if (!empty($pet_error)): ?>
@@ -252,13 +225,11 @@ $adoption_requests = $stmt->fetchAll();
           <label>Pet Image:</label>
           <input type="file" name="pet_image" required>
         </div>
-        <!-- Hidden field to distinguish this form -->
         <input type="hidden" name="add_pet" value="1">
         <button type="submit">Add Pet</button>
       </form>
     </section>
 
-    <!-- Manage Adoptable Pets Section -->
     <section class="section">
       <h2>Manage Adoptable Pets</h2>
       <div class="grid">
@@ -278,7 +249,6 @@ $adoption_requests = $stmt->fetchAll();
       </div>
     </section>
 
-    <!-- Adoption Requests Section (Only Pending Requests) -->
     <section class="section">
       <h2>Adoption Requests (Pending)</h2>
       <table>
