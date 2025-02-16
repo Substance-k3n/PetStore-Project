@@ -1,6 +1,3 @@
-// We'll retrieve the variables isLoggedIn and currentUser from the inline <script> in adopt_user.php
-
-// 1) Scroll to Pets
 function scrollToPets() {
     const petsSection = document.getElementById('petsSection');
     if (petsSection) {
@@ -8,7 +5,7 @@ function scrollToPets() {
     }
   }
   
-  // 2) Adoption Modal Functions
+  // Adoption Modal Functions
   function openAdoptionModal() {
     document.getElementById('adoptionModal').style.display = 'flex';
   }
@@ -16,7 +13,7 @@ function scrollToPets() {
     document.getElementById('adoptionModal').style.display = 'none';
   }
   
-  // 3) Attach event listeners to Adopt buttons
+  //  Attach event listeners to Adopt buttons
   document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.adopt-button').forEach(button => {
       button.addEventListener('click', function(e) {
@@ -37,7 +34,7 @@ function scrollToPets() {
       closeButton.addEventListener('click', closeAdoptionModal);
     }
   
-    // 4) Adoption Form Submission (AJAX)
+    // Adoption Form Submission (AJAX)
     const adoptionForm = document.getElementById('adoptionForm');
     if (adoptionForm) {
       adoptionForm.addEventListener('submit', function(e) {
@@ -74,7 +71,7 @@ function scrollToPets() {
       });
     }
   
-    // 5) Close the modal if user clicks outside the modal content
+    //  Close the modal if user clicks outside the modal content
     window.addEventListener('click', function(e) {
       const modal = document.getElementById('adoptionModal');
       if (e.target === modal) {

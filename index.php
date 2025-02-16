@@ -2,10 +2,10 @@
 session_start();
 require_once 'db.php';
 
-// Check if the user is logged in or not
+
 $loggedInUser = isset($_COOKIE['loggedInUser']) ? $_COOKIE['loggedInUser'] : null;
 
-// Fetch all products
+
 $stmt = $pdo->query("SELECT * FROM products ORDER BY id DESC");
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
